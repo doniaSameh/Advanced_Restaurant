@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymleaf.org">
+    <head>
+        <title>List Items</title>
+    </head>
+    <body>
+        <div>
+            <h3>List Items</h3>
+            <hr/>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>description</th>
+                        <th>image</th>
+                        <th>name</th>
+                        <th>price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item: ${items}">
+                        <td th:text="${item.id}"/>
+                        <td th:text="${item.description}"/>
+                        <img th:src="@{${item.image}}"/>
+                        <td th:text="${item.image}"/>
+                        <td th:text="${item.name}"/>
+                        <td th:text="${item.price}"/>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+
+</html>
