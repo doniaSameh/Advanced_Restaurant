@@ -1,33 +1,95 @@
 <html xmlns:th="http://www.thymleaf.org">
     <head>
-        <title>List Items</title>
+        <style>
+        .topnav {
+            background-color: #333;
+            overflow: hidden;
+          }
+          
+          /* Style the links inside the navigation bar */
+          .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+          }
+          
+          /* Change the color of links on hover */
+          .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+          }
+          
+          /* Add a color to the active/current link */
+          .topnav a.active {
+            background-color: #04AA6D;
+            color: white;
+          }
+          .topnav-right {
+            float: right;
+          }
+          /* .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background-color: #2196F3;
+  padding: 10px;
+} */
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+          </style>
     </head>
     <body>
-        <div>
-            <h3>List Items</h3>
-            <hr/>
+        <div class="topnav">
+            <a class="active" href="/auth/login">Home</a>
+            <a  href="/auth/login">Menu</a>
+            <a  href="/auth/login">Order</a>
+            <a  href="/auth/login">Cart</a>
+            <div class="topnav-right">
+            <a class="log" href="/auth/login">Logout</a>
+        </div>
+          </div>
+          <div class="grid-container">
+            
+            <!-- <div class="grid-item">2</div>
+            <div class="grid-item">3</div>
+            <div class="grid-item">4</div>
+            <div class="grid-item">5</div>
+            <div class="grid-item">6</div>
+            <div class="grid-item">7</div>
+            <div class="grid-item">8</div>
+            <div class="grid-item">9</div> -->
+          
             <table>
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>description</th>
-                        <th>image</th>
                         <th>name</th>
                         <th>price</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="item: ${items}">
+                    <div class="grid-item">
+                    <tr th:each="item: ${items}">                   
                         <td th:text="${item.id}"/>
                         <td th:text="${item.description}"/>
-                        <img th:src="@{${item.image}}"/>
-                        <td th:text="${item.image}"/>
+                        <img th:src="@{${item.image}}" width="120" height="120"/>
                         <td th:text="${item.name}"/>
                         <td th:text="${item.price}"/>
+                    </div>
                     </tr>
                 </tbody>
             </table>
         </div>
+    </div>
     </body>
 
 </html>
+
