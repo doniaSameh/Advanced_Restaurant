@@ -1,0 +1,30 @@
+# Use version 3.9 of the Docker Compose syntax
+version: '3.9'
+
+# Define the services that will run in containers
+services:
+
+  # Define the 'app' service
+  app:
+    build: . # Build the Docker image from the current directory (the directory containing the Dockerfile)
+    ports:
+      - "8081:8080" # Expose port 8080 in the container and map it to port 8081 on the host
+    depends_on:
+      - db # Specify that the 'app' service depends on the 'db' service
+    restart: on-failure # Set the restart policy to restart the container if it fails
+
+  # Define the 'db' service
+  db:
+    image: mysql # Use the official MySQL image from Docker Hub
+    environment:
+      MYSQL_ROOT_PASSWORD: Test12345 # Set the root password for MySQL
+      MYSQL_DATABASE: video3 # Create a new MySQL database named 'video3'
+
+  # Define the 'phpmyadmin' service
+  phpmyadmin:
+    image: phpmyadmin # Use the official phpMyAdmin image from Docker Hub
+    environment:
+      PMA_HOST: db # Set the MySQL hostname to the 'db' service
+      PMA_PORT: 3306 # Set the MySQL port to the default port (3306)
+    ports:
+      - "1234:80" # Expose port 80 in the container and map it to port 1234 on the host
