@@ -51,7 +51,7 @@ public class AuthController {
                  myUser.getPassword(),
                  myUser.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authenticationToken);
-            return "redirect:/thymeleaf/items";
+            return "redirect:/menu";
         }
         return "redirect:/auth/login";
 

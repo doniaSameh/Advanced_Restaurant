@@ -73,10 +73,10 @@ public class LoggingAspect {
     }
 
     // This method is executed before any method annotated with the custom annotation "MyCustomAnnotation"
-    @Before("@annotation(com.example.pdf.demo.annotations.MyCustomAnnotation)")
-    public void beforeMyCustomAnnotation(JoinPoint joinPoint){
-        System.out.println("Before my MyCustomAnnotation: "+joinPoint.getSignature());
-    }
+    // @Before("@annotation(com.example.pdf.demo.annotations.MyCustomAnnotation)")
+    // public void beforeMyCustomAnnotation(JoinPoint joinPoint){
+    //     System.out.println("Before my MyCustomAnnotation: "+joinPoint.getSignature());
+    // }
 
     // This method is executed before any method in the repository layer
     @Before("repositoryLayer()")

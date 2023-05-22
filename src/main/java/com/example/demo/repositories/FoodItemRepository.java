@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.models.FoodItem;
 
 @Repository
-public interface FoodItemRepository extends JpaRepository<FoodItem, Long> {
+public interface FoodItemRepository extends JpaRepository<FoodItem, Integer> {
 
     public void deleteByName(String name);
 }

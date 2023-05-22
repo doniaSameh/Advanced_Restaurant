@@ -16,17 +16,19 @@ import com.example.demo.models.FoodItem;
 import com.example.demo.repositories.FoodItemRepository;
 
 @Controller
-@RequestMapping("/thymeleaf")
+@RequestMapping("")
 public class DynamicController {
     @Autowired
     FoodItemRepository foodItemRepository;
 
 
-    @GetMapping("")
+    @GetMapping("/home")
     public String index(){
         return "index.html";
     }
-    @GetMapping("/items")
+
+
+    @GetMapping("/menu")
     public ModelAndView listItems(){
         ModelAndView mav = new ModelAndView("list-items.html");
         List<FoodItem> foodItems = this.foodItemRepository.findAll();
@@ -43,7 +45,7 @@ public class DynamicController {
     @PostMapping("/save-item")
     public String saveItem(@ModelAttribute() FoodItem foodItem){
         this.foodItemRepository.save(foodItem);
-        return "redirect:/thymeleaf/items";
+        return "redirect:/menu";
 
     }
 }

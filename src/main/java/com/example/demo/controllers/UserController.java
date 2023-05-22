@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,8 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import com.example.demo.models.Cart;
 import com.example.demo.models.User;
+import com.example.demo.repositories.CartRepository;
 import com.example.demo.repositories.UserRepository;
 
 @RestController
@@ -27,8 +29,16 @@ public class UserController {
     // Injects the UserRepository dependency
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private CartRepository cartRepository;
 
     // Handles GET requests to retrieve all users
+    @GetMapping("/cart")
+    public ResponseEntity getCart(@AuthenticationPrincipal User user){
+        Cart cart = cartRepository.findByUser(user).orElse(null);
+        return new ResponseEntity(cart, HttpStatus.OK);
+
+    }
     @GetMapping("")
     public ResponseEntity getUsers(){
         List<User> users = this.userRepository.findAll();

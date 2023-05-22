@@ -39,7 +39,7 @@ public class WebSecurityConfig {
         .formLogin()
         .loginPage("/auth/login")
         .loginProcessingUrl("/auth/login/save")
-        .defaultSuccessUrl("/thymeleaf/items")
+        .defaultSuccessUrl("/menu")
         .permitAll()
         .and()
         .logout()

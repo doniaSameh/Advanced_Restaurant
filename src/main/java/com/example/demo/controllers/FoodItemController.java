@@ -44,7 +44,7 @@ public class FoodItemController {
     // along with an HTTP status of 200 OK. 
     // If no Order is found, it returns an HTTP status of 404 Not Found.
     @GetMapping("{foodItemId}")
-    public ResponseEntity getFoodItem(@PathVariable("foodItemId") Long foodItemId){
+    public ResponseEntity getFoodItem(@PathVariable("foodItemId") Integer foodItemId){
         FoodItem foodItem=this.foodItemRepository.findById(foodItemId).orElse(null);
         if(foodItem==null)
         {
@@ -77,7 +77,7 @@ public class FoodItemController {
         // }
     }
     @PutMapping("{foodItemId}")
-    public ResponseEntity updateOrder(@PathVariable("foodItemId") Long foodItemId, @RequestBody Map<String,String> body){
+    public ResponseEntity updateOrder(@PathVariable("foodItemId") Integer foodItemId, @RequestBody Map<String,String> body){
         FoodItem foodItem=this.foodItemRepository.findById(foodItemId).orElse(null);
         if(foodItem==null)
         {
@@ -91,7 +91,7 @@ public class FoodItemController {
 
     }
     @DeleteMapping("{foodItemId}")
-    public ResponseEntity deleteOrder(@PathVariable("foodItemId") Long foodItemId){
+    public ResponseEntity deleteOrder(@PathVariable("foodItemId") Integer foodItemId){
         FoodItem foodItem=this.foodItemRepository.findById(foodItemId).orElse(null);
         if(foodItem==null)
         {

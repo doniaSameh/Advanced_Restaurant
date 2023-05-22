@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class CartItem {
     @Id 
@@ -19,8 +21,9 @@ public class CartItem {
     private int quantity;
     
 
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name="id", nullable=false)
+    @JoinColumn(name="cart_id", nullable=false)
     private Cart cart;
 
     @OneToOne

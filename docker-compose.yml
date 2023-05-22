@@ -17,8 +17,8 @@ services:
   db:
     image: mysql # Use the official MySQL image from Docker Hub
     environment:
-      MYSQL_ROOT_PASSWORD: Test12345 # Set the root password for MySQL
-      MYSQL_DATABASE: video3 # Create a new MySQL database named 'video3'
+      MYSQL_ROOT_PASSWORD: Moha.2002 # Set the root password for MySQL
+      MYSQL_DATABASE: restaurant_system # Create a new MySQL database named 'video3'
 
   # Define the 'phpmyadmin' service
   phpmyadmin:

@@ -6,7 +6,7 @@
         <div>
             <h3>Add Item</h3>
             <hr/>
-            <form th:action="@{/thymeleaf/save-item}" th:object="${item}" method="POST">
+            <form th:action="@{/save-item}" th:object="${item}" method="POST">
                 <input type="text" th:field="${item.name}" placeholder="Enter name" />
                 <input type="text" th:field="${item.description}" placeholder="Enter description" />
                 <input type="text" th:field="${item.image}" placeholder="Enter image" />
@@ -14,7 +14,7 @@
                 <button type="submit">Save</button>
             </form>
             <hr/>
-            <a th:href="@{/thymeleaf/list}">Back to list</a>
+            <a th:href="@{/list}">Back to list</a>
         </div>
     </body>
 </html>
