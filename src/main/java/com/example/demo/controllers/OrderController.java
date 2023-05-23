@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.models.Order;
+import com.example.demo.repositories.OrderItemRepository;
 import com.example.demo.repositories.OrderRepository;
 import com.example.demo.services.OrderService;
 import java.sql.Timestamp;
@@ -28,7 +30,7 @@ import java.util.Date;
 // This code defines a RESTful API controller for orders. 
 // The @RestController and @RequestMapping annotations are used to define the base URL endpoint for this controller, 
 // which is "/orders". The ArrayList<Order> orders variable is used to store a list of orders.
-@RestController
+@Controller
 @RequestMapping("/myOrders")
 public class OrderController {
 
@@ -37,6 +39,9 @@ public class OrderController {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
    
 
 
@@ -75,7 +80,7 @@ public class OrderController {
         Timestamp timestamp;
         try {
             timestamp = getCurrentTime();
-            Order order = new Order(body.get("billNo"), body.get("menu"), Integer.parseInt(body.get("quantity")));
+            Order order = new Order();
             this.orderRepository.save(order);
             ResponseEntity response = new ResponseEntity<>(order, HttpStatus.OK);
             return response;    
@@ -101,9 +106,6 @@ public class OrderController {
             return new ResponseEntity("Not Found", HttpStatus.NOT_FOUND);
         }
         //Order order = new Order(body.get("billNo"), body.get("menu"), Integer.parseInt(body.get("quantity")));
-        order.setBillNo(body.get("billNo"));   
-        order.setMenu(body.get("menu"));
-        order.setQuantity(Integer.parseInt(body.get("quantity")));
         this.orderRepository.save(order);
         return new ResponseEntity(order, HttpStatus.OK);
 

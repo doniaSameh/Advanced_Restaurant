@@ -1,9 +1,13 @@
 package com.example.demo.models;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -12,22 +16,40 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String billNo;
-    private String menu;
-    private int quantity;
-    private String orderedTime;
 
-    public Order(Long id, String billNo, String menu, int quantity, String orderedTime) {
-        this.id = id;
-        this.billNo = billNo;
-        this.menu = menu;
-        this.quantity = quantity;
-        this.orderedTime = orderedTime;
+    @ManyToOne
+    private User user;
+    private double totalprice;
+    
+    @OneToMany(mappedBy="order")
+    private List<OrderItem> items; 
+
+
+    
+    public Order(){
+
     }
-    public Order(String billNo, String menu, int quantity){
-        this.billNo = billNo;
-        this.menu = menu;
-        this.quantity = quantity;
+    public User getUser() {
+        return user;
+    }
+    public void setUser(User user) {
+        this.user = user;
+    }
+    public double getTotalprice() {
+        return totalprice;
+    }
+    public void setTotalprice(double totalprice) {
+        this.totalprice = totalprice;
+    }
+    public List<OrderItem> getItems() {
+        return items;
+    }
+    public void setItems(List<OrderItem> items) {
+        this.items = items;
+    }
+    public Order(Long id) {
+        this.id = id;
+        
     }
     public Long getId() {
         return id;
@@ -35,30 +57,5 @@ public class Order {
     public void setId(Long id) {
         this.id = id;
     }
-    public String getBillNo() {
-        return billNo;
-    }
-    public void setBillNo(String billNo) {
-        this.billNo = billNo;
-    }
-    public String getMenu() {
-        return menu;
-    }
-    public void setMenu(String menu) {
-        this.menu = menu;
-    }
-    public int getQuantity() {
-        return quantity;
-    }
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-    public String getOrderedTime() {
-        return orderedTime;
-    }
-    public void setOrderedTime(String orderedTime) {
-        this.orderedTime = orderedTime;
-    }
-   
-    
+
 }
