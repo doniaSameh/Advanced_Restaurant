@@ -1,2 +1,88 @@
-<!DOCTYPE html>
-<h3>Hello from index.html</h3>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <style>
+            .topnav {
+            background-color: #000000;
+            overflow: hidden;
+          }
+          
+          /* Style the links inside the navigation bar */
+          .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+          }
+          
+          /* Change the color of links on hover */
+          .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+          }
+          
+          /* Add a color to the active/current link */
+          .topnav a.active {
+            background-color: #bc5806;
+            color: white;
+          }
+          .topnav-right {
+            float: right;
+          }
+          body{
+            background-image: url('https://static.vecteezy.com/system/resources/previews/005/140/844/large_2x/brown-wooden-table-on-coffee-shop-or-restaurant-background-free-photo.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+          }
+          .centered {
+           
+  text-align: center;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size:4cqmax;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.button{
+    position: fixed;
+    margin-left: 45%;
+    bottom: 30%;
+    background-color: #bc5806; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+.button:hover {
+  background-color: #ffffff; 
+  color: rgb(0, 0, 0);
+  border: 2px solid #bc5806;
+}
+        </style>
+    </head>
+    <body>
+        <div class="topnav">
+            <a  class="active" th:href="@{/home}">Home</a>
+            <a  th:href="@{/menu}">Menu</a>
+            <a  th:href="@{/order}">Order</a>
+            <a  th:href="@{/cart}">Cart</a>
+            <div class="topnav-right">
+            <a class="log" th:href="@{/auth/logout}">Logout</a>
+        </div>
+          </div>       
+          <div class="centered">Welcome To Fork & Spoon</div>  
+          
+            <a th:href="@{/menu}">
+                <input type="submit" value="Order Now" class="button">
+            </a>
+          
+    </body>
+</html>

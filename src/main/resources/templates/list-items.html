@@ -2,7 +2,7 @@
     <head>
         <style>
         .topnav {
-            background-color: #333;
+            background-color: #000000;
             overflow: hidden;
           }
           
@@ -24,18 +24,18 @@
           
           /* Add a color to the active/current link */
           .topnav a.active {
-            background-color: #04AA6D;
+            background-color: #bc5806;
             color: white;
           }
           .topnav-right {
             float: right;
           }
-          /* .grid-container {
+          .grid-container {
   display: grid;
   grid-template-columns: auto auto auto;
-  background-color: #2196F3;
+  background-color: #ffffff;
   padding: 10px;
-} */
+}
 .grid-item {
   background-color: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(0, 0, 0, 0.8);
@@ -43,6 +43,52 @@
   font-size: 30px;
   text-align: center;
 }
+.button {
+  background-color: #bc5806; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0px 130px;
+  cursor: pointer;
+  
+}
+
+.button:hover {
+  background-color: #ffffff; /* Green */
+  color: rgb(0, 0, 0);
+  border: 2px solid #bc5806;
+}
+.item-details{
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: larger;
+  
+}
+.item-title{
+  margin: 20px 170px;
+}
+.price{
+  margin: 20px 160px;
+}
+
+input[type=number] {
+  width: 100px;
+  height: 30px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 30px 160px;
+  background-color: #fff;
+  color: #000;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  cursor: pointer;
+
+}
+
 
           </style>
     </head>
@@ -55,59 +101,30 @@
             <div class="topnav-right">
             <a class="log" th:href="@{/auth/logout}">Logout</a>
         </div>
-          </div>
+          </div><br>
           <div class="grid-container">
-            
-            <!-- <div class="grid-item">2</div>
-            <div class="grid-item">3</div>
-            <div class="grid-item">4</div>
-            <div class="grid-item">5</div>
-            <div class="grid-item">6</div>
-            <div class="grid-item">7</div>
-            <div class="grid-item">8</div>
-            <div class="grid-item">9</div> -->
             <div th:each="item : ${items}" class="location-menu-card item" >
               <a >
                 <div class="item-details">
                   <span class="product food">
-                    <img th:src="@{${item.image}}" th:alt="${item.name}">
+                    <img th:src="@{${item.image}}" th:alt="${item.name}" width="400" height="270"><br>
                   </span>
                   <span class="item-title" th:text="${item.name}">
                   </span>
-                  <p>
-                    <span th:text="${item.price}">
+                  <p class="price">
+                    <span th:text="${item.price}" >
                     </span>
+                    EGP
                   </p>
                 </div>
               </a>
                   <form th:action="@{/cart/add}" method="post">
-                    <input type="number" th:name="quantity"></input>
-                    <input type="submit" value="Add To Cart"></input>
+                    Quantity:<input type="number" min="1" th:name="quantity" class="num"></input> 
+                    <br>
+                    <input type="submit" value="Add To Cart" class="button"></input><br>
                     <input type="hidden" th:name="id" th:value="${item.id}"></input>
                   </form>
             </div>
-          
-            <table>
-                <thead>
-                    <tr>
-                        <!-- <th>Id</th> -->
-                        <th>description</th>
-                        <th>name</th>
-                        <th>price</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <div class="grid-item">
-                    <tr th:each="item: ${items}">                  
-                        <!-- <td th:text="${item.id}"/> -->
-                        <td th:text="${item.description}"/>
-                        <img th:src="@{${item.image}}" width="120" height="120"/>
-                        <td th:text="${item.name}"/>
-                        <td th:text="${item.price}"/>
-                    </div>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
     </body>
